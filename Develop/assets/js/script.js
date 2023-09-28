@@ -4,28 +4,28 @@ var questionContainer = document.getElementById("question-container")
 
 var questions = [
     {
-        question: "question 1",
-        choices: ["A.", "B.", "C."],
+        question: "Question 1. ",
+        choices: [" A.", "B.", "C."],
         answer: "B.",
     },
     {
-        question: "question 2",
-        choices: ["A.", "B.", "C."],
+        question: "question 2. ",
+        choices: [" A.", "B.", "C."],
         answer: "C.",
     },
     {
-        question: "question 3",
-        choices: ["A.", "B.", "C."],
+        question: "question 3. ",
+        choices: [" A.", "B.", "C."],
         answer: "A.",
     },
     {
-        question: "question 4",
-        choices: ["A.", "B.", "C."],
+        question: "question 4. ",
+        choices: [" A.", "B.", "C."],
         answer: "B.",
     },
     {
-        question: "question 5",
-        choices: ["A.", "B.", "C."],
+        question: "question 5. ",
+        choices: [" A.", "B.", "C."],
         answer: "A.",
     },
 ];
@@ -34,14 +34,26 @@ var questions = [
 var timeLeft = questions.length * 60;
 var currentQuestionIndex = 0;
 
+function addChoiceEventListeners() {
+    var choiceInputs = document.querySelectorAll('input[name="choice"]');
+    for (var i = 0; i < choiceInputs.length; i++) {
+        choiceInputs[i].addEventListener("change", function () {
+            if (this.checked) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+    }
+}
+
 function displayQuestion() {
     if (currentQuestionIndex < questions.length) {
-        var currentQuestion = question[currentQuestionIndex];
+        var currentQuestion = questions[currentQuestionIndex];
         var questionElement = document.createElement("div");
         questionElement.className = "question";
         questionElement.textContent = currentQuestion.question;
 
-        for (var i = 0; i <currentQuestion.choices.length; i++) {
+        for (var i = 0; i < currentQuestion.choices.length; i++) {
             var choiceLabel = document.createElement("label");
             var choiceInput = document.createElement("input");
             choiceInput.type = "radio";
@@ -53,6 +65,8 @@ function displayQuestion() {
 
         questionContainer.innerHTML ="";
         questionContainer.appendChild(questionElement);
+
+        addChoiceEventListeners();
     } else {
         questionContainer.innerHTML = "Congrats!!";
     }
