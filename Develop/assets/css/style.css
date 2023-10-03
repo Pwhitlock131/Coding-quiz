@@ -30,12 +30,24 @@ font-family: Arial, Helvetica, sans-serif;
 background-color: rgb(112, 112, 112);
 }
 
+/* Add these styles to your CSS */
 .question {
     font-size: 18px;
     margin-bottom: 10px;
     text-align: center;
     padding: 18px;
-    /* display: none; */
+    display: flex;
+    flex-direction: column; /* Display questions and choices as a column */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#question-container {
+    text-align: center;
+    flex-direction: column;
 }
 
 .options label {
